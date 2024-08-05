@@ -64,7 +64,7 @@ jobs:
     steps:
       - name: Download artifact
         id: download-artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@add-delay-after-deleteincompletescan
         with:
           github-token: ${{ github.event.client_payload.token }}
           repository: ${{ github.event.client_payload.repository.full_name }}
@@ -84,6 +84,7 @@ jobs:
           policy: ${{ github.event.client_payload.policy_name }}
           scantimeout: 15
           failbuild: ${{ github.event.client_payload.user_config.break_build_policy_findings }}
+          deleteincompletescan: false
 
       - name: Veracode Policy Results
         id: prepare-results
