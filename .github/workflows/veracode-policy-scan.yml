@@ -88,7 +88,7 @@ jobs:
       - name: Veracode Policy Results
         id: prepare-results
         if: always()
-        uses: Veracode/github-actions-integration-helper@v0.1.2
+        uses: Veracode/github-actions-integration-helper@add-delay-after-deleteincompletescan
         with:
           action: 'preparePolicyResults'
           token: ${{ inputs.token }}
@@ -100,6 +100,7 @@ jobs:
           fail_checks_on_policy: ${{ inputs.break_build_policy_findings }}
           fail_checks_on_error: ${{ inputs.break_build_on_error }}
           filter_mitigated_flaws: ${{ inputs.filter_mitigated_flaws }}
+          deleteincompletescan: false
 
   veracode-remove-sandbox:
     needs: policy_scan
